@@ -7,12 +7,19 @@ import { TasksComponent } from './components/tasks/tasks.component';
 import { NotesComponent } from './components/notes/notes.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { RouterModule, Routes } from '@angular/router';
+import { NotesPublicComponent } from './components/notes/notes-public/notes-public.component';
+import { NotesPersonalComponent } from './components/notes/notes-personal/notes-personal.component';
 
 const app_routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: 'home', component: HomeComponent},
   {path: 'tasks', component: TasksComponent},
-  {path: 'notes', component: NotesComponent}
+  {path: 'notes', component: NotesComponent,
+  children: [
+    {path: 'public', component: NotesPublicComponent},
+    {path: 'personal', component: NotesPersonalComponent}
+  ]
+}
 ];
 
 @NgModule({
@@ -21,7 +28,9 @@ const app_routes: Routes = [
     HomeComponent,
     TasksComponent,
     NotesComponent,
-    NavbarComponent
+    NavbarComponent,
+    NotesPersonalComponent,
+    NotesPublicComponent
   ],
   imports: [
     BrowserModule,
